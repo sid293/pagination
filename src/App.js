@@ -14,16 +14,16 @@ function App() {
     setCurrentPage((prev)=> prev>1?prev-1:1);
   };
 
-  function fillFiltersData(){
+  function fillFiltersData(dataToFilter){
     let newArr = [];
     for(let i=(currentPage*10)-10;i<(currentPage*10);i++){
-      if(i>=data.length) break;
-      newArr.push(data[i]);
+      if(i>=dataToFilter.length) break;
+      newArr.push(dataToFilter[i]);
     }
     setFilteredData(newArr);
   }
   useEffect(()=>{
-    fillFiltersData();
+    fillFiltersData(data);
   },[currentPage, data]);
 
   useEffect(()=>{
@@ -32,9 +32,10 @@ function App() {
       return response.json();
     })
     .then(data => {
+      fillFiltersData(data);
       setData(data)
     })
-    .catch((err)=>{console.alert("failed to fetch data")});
+    .catch((err)=>{alert("failed to fetch data")});
   },[]);
 
 
