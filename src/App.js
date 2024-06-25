@@ -42,6 +42,7 @@ function App() {
   return (
     <div className="App">
       <h1>Employee Data Table</h1>
+      {filteredData.length!==0 && 
       <table className="empTable" style={{width:"100vw",height:'70vh'}}>
         <tr style={{backgroundColor:"green",color:"white"}}>
           <th>Id</th>
@@ -57,8 +58,8 @@ function App() {
             <td>{fdata.role}</td>
           </tr>
         ))}
-
       </table>
+      }
       <div style={{display:"flex",justifyContent:"center", gap:'8px'}} className="buttons">
         <button onClick={prevPage}>Previous</button>
         <div className="currentPage">{currentPage}</div>
